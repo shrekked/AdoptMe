@@ -1,9 +1,12 @@
 import { useState, useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import AdoptedPetContext from "./AdoptedPetContext";
+// import TokenContext from "./TokenContext";
 import Results from "./Results";
 import fetchSearch from "./fetchSearch.js";
+import fetchToken from "./fetchToken.js";
 import useBreeds from "./useBreeds.js";
+// import TokenContext from "./TokenContext.js";
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 
 const SearchParams = () => {
@@ -12,13 +15,14 @@ const SearchParams = () => {
 		animal: "",
 		breed: "",
 	});
+
 	const [animal, setAnimal] = useState("");
 	const [breeds] = useBreeds(animal);
 	const [adoptedPet] = useContext(AdoptedPetContext);
 
 	const results = useQuery(["search", requestParams], fetchSearch);
-	const pets = results?.data?.pets ?? [];
-
+	const pets = results?.data?.animals ?? [];
+	console.log({ adoptedPet });
 	return (
 		<div className="search-params">
 			<form
@@ -31,6 +35,7 @@ const SearchParams = () => {
 						location: formData.get("location") ?? "",
 					};
 					setRequestParams(obj);
+					console.log({ requestParams }, { obj });
 				}}
 			>
 				{adoptedPet ? (
@@ -50,6 +55,7 @@ const SearchParams = () => {
 					<select
 						id="animal"
 						value={animal}
+						name="animal"
 						onChange={(e) => {
 							setAnimal(e.target.value);
 						}}
@@ -76,4 +82,19 @@ const SearchParams = () => {
 	);
 };
 
-export default SearchParams;
+const SearchWrapper = () => {
+	const authToken = useQuery(["token", ""], fetchToken);
+	const token = authToken?.data?.access_token;
+	if (token) {
+		window.sessionStorage.setItem("petfinder-token", token);
+	}
+	return (
+		token && (
+			<div>
+				<SearchParams token={token} />
+			</div>
+		)
+	);
+};
+
+export default SearchWrapper;

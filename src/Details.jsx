@@ -24,11 +24,12 @@ const Details = () => {
 		);
 	}
 
-	const pet = results.data.pets[0];
+	console.log({ results });
+	const pet = results.data.animal;
 
 	return (
 		<div className="details">
-			<Carousel images={pet.images} />
+			<Carousel images={pet.photos} />
 			<div>
 				<h1>{pet.name}</h1>
 				<h2>

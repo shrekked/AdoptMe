@@ -1,6 +1,7 @@
 import Pet from "./Pet";
 
 const Results = ({ pets }) => {
+	console.log({ pets });
 	return (
 		<div className="search">
 			{!pets.length ? (
@@ -13,7 +14,7 @@ const Results = ({ pets }) => {
 						breed={pet.breed}
 						id={pet.id}
 						name={pet.name}
-						images={pet.images}
+						images={pet.photos}
 						location={`${pet.city}, ${pet.state}`}
 						key={pet.id}
 					/>
