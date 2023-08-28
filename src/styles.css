@@ -59,6 +59,10 @@ body {
     min-height: 100px;
 }
 
+.pet-name {
+    text-align: center;
+}
+
 .info {
     float: left;
     width: 80%;
