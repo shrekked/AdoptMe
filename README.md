@@ -18,7 +18,6 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -31,10 +30,11 @@
   <p align="center">
     Functioning pet adoption app built in React, using the <a href="https://www.petfinder.com/developers/">Petfinder API</a>
     <br />
+    Hosted using Google Firebase 🔥
     <a href="https://github.com/shrekked/AdoptMe"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/shrekked/AdoptMe">View Demo</a>
+    <a href="https://adoptme-6d7f8.web.app/">View Demo</a>
     ·
     <a href="https://github.com/shrekked/AdoptMe/issues">Report Bug</a>
     ·
@@ -132,7 +132,7 @@ This is an example of how to list things you need to use the software and how to
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+_For more examples, please refer to the [Documentation](https://www.petfinder.com/developers/v2/docs/)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -141,10 +141,10 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [ ] Connect to the Petfinder API
+- [ ] Add User Accounts
+- [ ] Add Pet Wishlist
+- [ Finish Readme Documentation ]
 
 See the [open issues](https://github.com/shrekked/AdoptMe/issues) for a full list of proposed features (and known issues).
 
@@ -184,7 +184,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Your Name - [@ECrumpecker](https://twitter.com/ECrumpecker) - evan.crumpecker@gmail.com
 
-Project Link: [https://github.com/shrekked/AdoptMe](https://github.com/shrekked/AdoptMe)
+Project Link: [https://adoptme-6d7f8.web.app/](https://adoptme-6d7f8.web.app/)
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
