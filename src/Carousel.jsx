@@ -5,10 +5,6 @@ class Carousel extends Component {
 		active: 0,
 	};
 
-	static defaultProps = {
-		images: ["http://pets-images.dev-apis.com/pets/none.jpg"],
-	};
-
 	handleIndexClick = (e) => {
 		this.setState({
 			active: +e.target.dataset.index,
@@ -21,15 +17,15 @@ class Carousel extends Component {
 
 		return (
 			<div className="carousel">
-				<img src={images[active]} alt="animal hero" />
+				<img src={images[active].large} alt="animal hero" />
 				<div className="carousel-smaller">
 					{images.map((photo, index) => (
 						// eslint-disable-next-line
 						<img
 							onClick={this.handleIndexClick}
 							data-index={index}
-							key={photo}
-							src={photo}
+							key={index}
+							src={photo.small}
 							className={index === active ? "active" : ""}
 							alt="animal thumbnail"
 						/>

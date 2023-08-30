@@ -3,8 +3,15 @@ const fetchBreedList = async ({ queryKey }) => {
 
 	if (!animal) return [];
 
+	const token = window.sessionStorage.getItem("petfinder-token") || "";
+
 	const apiRes = await fetch(
-		`https://pets-v2.dev-apis.com/breeds?animal=${animal}`
+		`https://api.petfinder.com/v2/types/${animal.toLowerCase()}/breeds`,
+		{
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		}
 	);
 
 	if (!apiRes.ok) {
