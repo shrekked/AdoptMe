@@ -3,8 +3,9 @@ import fetchBreedList from "./fetchBreedList";
 
 function useBreeds(animal) {
 	const results = useQuery(["breeds", animal], fetchBreedList);
+	const breeds = results?.data?.breeds?.map((breed) => breed.name);
 
-	return [results?.data?.breeds ?? [], results.status];
+	return [breeds ?? [], results.status];
 }
 
 export default useBreeds;

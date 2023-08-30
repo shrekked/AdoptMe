@@ -1,28 +1,36 @@
 import { useState, useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import AdoptedPetContext from "./AdoptedPetContext";
-// import TokenContext from "./TokenContext";
+import fetchSearch from "./scripts/fetchSearch.js";
+import fetchAnimalTypes from "./scripts/fetchAnimalTypes.js";
+import useBreeds from "./scripts/useBreeds.js";
 import Results from "./Results";
-import fetchSearch from "./fetchSearch.js";
-import fetchToken from "./fetchToken.js";
-import useBreeds from "./useBreeds.js";
-// import TokenContext from "./TokenContext.js";
-const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
+import Pagination from "./Pagination";
 
 const SearchParams = () => {
+	const [animal, setAnimal] = useState("");
 	const [requestParams, setRequestParams] = useState({
 		location: "",
 		animal: "",
 		breed: "",
+		page: 1,
 	});
 
-	const [animal, setAnimal] = useState("");
 	const [breeds] = useBreeds(animal);
 	const [adoptedPet] = useContext(AdoptedPetContext);
 
-	const results = useQuery(["search", requestParams], fetchSearch);
-	const pets = results?.data?.animals ?? [];
-	console.log({ adoptedPet });
+	const { data, isLoading } = useQuery(["search", requestParams], fetchSearch);
+	// const results = useQuery(["search", requestParams], fetchSearch);
+	const animalTypeData = useQuery(["searchAnimalTypes", ""], fetchAnimalTypes);
+
+	const types = animalTypeData?.data?.types ?? [];
+	const ANIMALS = types.map((type) => {
+		return type.name;
+	});
+
+	const pets = data?.animals ?? [];
+	const pagination = data?.pagination ?? {};
+
 	return (
 		<div className="search-params">
 			<form
@@ -35,7 +43,6 @@ const SearchParams = () => {
 						location: formData.get("location") ?? "",
 					};
 					setRequestParams(obj);
-					console.log({ requestParams }, { obj });
 				}}
 			>
 				{adoptedPet ? (
@@ -46,10 +53,16 @@ const SearchParams = () => {
 						<h2 className="pet-name">{adoptedPet.name}</h2>
 					</>
 				) : null}
-				<label htmlFor="location">
-					Location
-					<input id="location" name="location" placeholder="Location" />
-				</label>
+				<div>
+					<label htmlFor="location">
+						Location
+						<input
+							id="location"
+							name="location"
+							placeholder="Search by City and State, or Zip Code"
+						/>
+					</label>
+				</div>
 				<label htmlFor="animal">
 					Animal
 					<select
@@ -77,24 +90,15 @@ const SearchParams = () => {
 				</label>
 				<button>Submit</button>
 			</form>
-			<Results pets={pets} />
+			<Results pets={pets} isLoading={isLoading} />
+
+			<Pagination
+				pagination={pagination}
+				requestParams={requestParams}
+				setRequestParams={setRequestParams}
+			/>
 		</div>
 	);
 };
 
-const SearchWrapper = () => {
-	const authToken = useQuery(["token", ""], fetchToken);
-	const token = authToken?.data?.access_token;
-	if (token) {
-		window.sessionStorage.setItem("petfinder-token", token);
-	}
-	return (
-		token && (
-			<div>
-				<SearchParams token={token} />
-			</div>
-		)
-	);
-};
-
-export default SearchWrapper;
+export default SearchParams;
