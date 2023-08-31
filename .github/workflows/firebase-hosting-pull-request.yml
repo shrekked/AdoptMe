@@ -8,8 +8,8 @@ jobs:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
     env: 
-      VITE_PETFINDER_API_KEY: '${{ secrets.VITE_PETFINDER_API_KEY }}'
-      VITE_PETFINDER_SECRET_KEY: '${{ secrets.VITE_PETFINDER_SECRET_KEY }}'
+      VITE_PETFINDER_API_KEY: '${{ env.VITE_PETFINDER_API_KEY }}'
+      VITE_PETFINDER_SECRET_KEY: '${{ env.VITE_PETFINDER_SECRET_KEY }}'
     steps:
       - uses: actions/checkout@v3
       - run: npm ci && npm run build
