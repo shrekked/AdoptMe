@@ -9,9 +9,6 @@ name: Deploy to Firebase Hosting on merge
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    env:
-      VITE_PETFINDER_API_KEY: '${{ env.VITE_PETFINDER_API_KEY }}'
-      VITE_PETFINDER_SECRET_KEY: '${{ env.VITE_PETFINDER_SECRET_KEY }}'
     steps:
       - uses: actions/checkout@v3
       - run: npm ci && npm run build

@@ -1,7 +1,7 @@
 const fetchBreedList = async ({ queryKey }) => {
 	const animal = queryKey[1];
 
-	if (!animal) return [];
+	if (!animal || !token) return [];
 
 	const token = window.sessionStorage.getItem("petfinder-token") || "";
 

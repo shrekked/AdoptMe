@@ -7,7 +7,9 @@
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vite",
+    "dev:api": "nodemon server.js",
+    "dev:client": "vite",
+    "dev": "npm run dev:api && npm run dev:client",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -28,7 +30,11 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^4.10.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
     "firebase": "^10.3.0",
+    "nodemon": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1",

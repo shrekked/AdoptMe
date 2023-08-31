@@ -2,6 +2,8 @@ async function fetchSearch({ queryKey }) {
 	const { animal, location, breed, page } = queryKey[1];
 	const token = window.sessionStorage.getItem("petfinder-token") || "";
 
+	if (!token) return [];
+
 	const res = await fetch(
 		`https://api.petfinder.com/v2/animals?${
 			page ? `page=${encodeURIComponent(page)}` : "page=1"
