@@ -141,7 +141,10 @@ _For more examples, please refer to the [Documentation](https://www.petfinder.co
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Connect to the Petfinder API
+- [ x ] Connect to the Petfinder API
+- [ ] Fix janky styling on Details page and pagination
+- [ ] Probably overhaul all styling
+- [ ] Add organization pages
 - [ ] Add User Accounts
 - [ ] Add Pet Wishlist
 - [ Finish Readme Documentation ]

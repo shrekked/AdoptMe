@@ -144,12 +144,21 @@ header {
     text-align: center;
     color: #333;
     font-size: 60px;
-    margin: 5px 0px;
+    margin: 0 0 2rem 0px;
 }
 
 .details h2 {
     text-align: center;
-    margin: 5px 0px 20px 0px;
+    margin: 2rem 0px;
+}
+
+.details .pet--about__info {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.details i.ri-circle-fill {
+    font-size: 12px;
 }
 
 .carousel {
@@ -169,7 +178,15 @@ header {
     width: 50%;
 }
 
-.carousel-smaller>img {
+.carousel-smaller>button {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.carousel-smaller>button>img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -177,6 +194,7 @@ header {
     margin: 15px;
     cursor: pointer;
     border: 2px solid #333;
+    z-index: 1;
 }
 
 .carousel-smaller>img.active {
@@ -200,7 +218,7 @@ header {
 .search-params button,
 #modal button,
 #modal a,
-.details button {
+.details button:not(.image-btns) {
     background-color: #ad343e;
     padding: 5px 25px;
     color: white;
@@ -321,11 +339,17 @@ header {
 
     .search {
         width: 100%;
+        flex: 0 1 100%;
+    }
+
+    .search-params form {
+        margin: 0 0 2rem 0;
     }
 
     .search-params form,
     .search-params form * {
         width: 100%;
+        flex: 0 1 100%;
     }
 }
 
@@ -344,9 +368,13 @@ header {
         float: none;
     }
 
-    .carousel-smaller>img {
+    .carousel-smaller button>img {
         width: 60px;
         height: 60px;
+        /* border: 0; */
+        background-color: none;
+        color: transparent;
+        display: inline;
     }
 }
 
@@ -399,6 +427,11 @@ form .pet {
     padding: 2rem 0;
     background: #faeff0;
     box-shadow: 0px 0px 12px #aaa, -0px -0px 12px #fff;
+    gap: 2rem;
+}
+
+.pagination_container button {
+    margin: 0;
 }
 
 .arrow_text {

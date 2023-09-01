@@ -7,21 +7,41 @@ import useBreeds from "./scripts/useBreeds.js";
 import Results from "./Results";
 import Pagination from "./Pagination";
 
-const SearchParams = () => {
+const SearchParams = ({ token }) => {
 	const [animal, setAnimal] = useState("");
+	// const [token, setToken] = useState(authToken);
 	const [requestParams, setRequestParams] = useState({
 		location: "",
 		animal: "",
 		breed: "",
 		page: 1,
+		token: token,
 	});
+
+	if (token.length > 0 && token != requestParams.token) {
+		const newRequest = {
+			...requestParams,
+			token: token,
+		};
+
+		setRequestParams(newRequest);
+	}
 
 	const [breeds] = useBreeds(animal);
 	const [adoptedPet] = useContext(AdoptedPetContext);
 
-	const { data, isLoading } = useQuery(["search", requestParams], fetchSearch);
+	const { data, isLoading } = useQuery({
+		queryKey: ["search", requestParams],
+		queryFn: fetchSearch,
+		// enabled: token.length > 0,
+	});
+
 	// const results = useQuery(["search", requestParams], fetchSearch);
-	const animalTypeData = useQuery(["searchAnimalTypes", ""], fetchAnimalTypes);
+	const animalTypeData = useQuery(
+		["searchAnimalTypes", requestParams.token],
+		fetchAnimalTypes
+		// token.length > 0
+	);
 
 	const types = animalTypeData?.data?.types ?? [];
 	const ANIMALS = types.map((type) => {
@@ -91,12 +111,13 @@ const SearchParams = () => {
 				<button>Submit</button>
 			</form>
 			<Results pets={pets} isLoading={isLoading} />
-
-			<Pagination
-				pagination={pagination}
-				requestParams={requestParams}
-				setRequestParams={setRequestParams}
-			/>
+			{pagination.total_pages > 1 && (
+				<Pagination
+					pagination={pagination}
+					requestParams={requestParams}
+					setRequestParams={setRequestParams}
+				/>
+			)}
 		</div>
 	);
 };
