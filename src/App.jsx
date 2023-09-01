@@ -28,8 +28,8 @@ const fetchToken = async () => {
 
 	const postData = {
 		grant_type: "client_credentials",
-		client_id: import.meta.env.VITE_PETFINDER_API_KEY,
-		client_secret: import.meta.env.VITE_PETFINDER_SECRET_KEY,
+		client_id: "Ubt40Y6ocoZHFRBIgsIAROHQ662Sc4YxO6pJ63i8iKRIyMbjqm",
+		client_secret: "OQ4pwxr23BK2FfZ6SS0nlQrMkoy3CF6uEiNUSuK5",
 	};
 
 	const res = await fetch(`https://api.petfinder.com/v2/oauth2/token`, {
