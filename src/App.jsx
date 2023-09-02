@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
+import { FirebaseApp } from "firebase/app";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import SearchParams from "./SearchParams";
@@ -15,6 +16,23 @@ const queryClient = new QueryClient({
 		},
 	},
 });
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+	apiKey: "AIzaSyD2JrShzX2NB0FtRCM0fU95fumS67m0CV0",
+	authDomain: "adoptme-6d7f8.firebaseapp.com",
+	databaseURL: "https://adoptme-6d7f8-default-rtdb.firebaseio.com",
+	projectId: "adoptme-6d7f8",
+	storageBucket: "adoptme-6d7f8.appspot.com",
+	messagingSenderId: "199982586296",
+	appId: "1:199982586296:web:ae81b6b41ce5c27a19174d",
+	measurementId: "G-NB9ZERCN46",
+};
+
+// Initialize Firebase
+const app = FirebaseApp.initializeApp(firebaseConfig);
+console.log(app);
 
 const fetchToken = async () => {
 	const sessionToken = window.sessionStorage.getItem("petfinder-token");

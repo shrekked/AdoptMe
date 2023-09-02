@@ -33,14 +33,12 @@ const SearchParams = ({ token }) => {
 	const { data, isLoading } = useQuery({
 		queryKey: ["search", requestParams],
 		queryFn: fetchSearch,
-		// enabled: token.length > 0,
 	});
 
 	// const results = useQuery(["search", requestParams], fetchSearch);
 	const animalTypeData = useQuery(
 		["searchAnimalTypes", requestParams.token],
 		fetchAnimalTypes
-		// token.length > 0
 	);
 
 	const types = animalTypeData?.data?.types ?? [];
@@ -60,7 +58,7 @@ const SearchParams = ({ token }) => {
 					const obj = {
 						animal: formData.get("animal") ?? "",
 						breed: formData.get("breed") ?? "",
-						location: formData.get("location") ?? "",
+						location: formData.get("location").trim().replace(/ +/g, " ") ?? "",
 					};
 					setRequestParams(obj);
 				}}
