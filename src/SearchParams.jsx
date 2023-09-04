@@ -55,8 +55,9 @@ const SearchParams = ({ token }) => {
 	const pagination = data?.pagination ?? {};
 
 	return (
-		<div className="search-params">
+		<div className="my-0 mx-auto w-11/12">
 			<form
+				className="mb-10 flex flex-col items-center justify-center rounded-lg bg-gray-200 p-10 shadow-lg"
 				onSubmit={(e) => {
 					e.preventDefault();
 					const formData = new FormData(e.target);
@@ -83,6 +84,8 @@ const SearchParams = ({ token }) => {
 							id="location"
 							name="location"
 							placeholder="Search by City and State, or Zip Code"
+							type="text"
+							className="search-input"
 						/>
 					</label>
 				</div>
@@ -92,6 +95,7 @@ const SearchParams = ({ token }) => {
 						id="animal"
 						value={animal}
 						name="animal"
+						className="search-input"
 						onChange={(e) => {
 							setAnimal(e.target.value);
 						}}
@@ -102,18 +106,25 @@ const SearchParams = ({ token }) => {
 						))}
 					</select>
 				</label>
-				<label htmlFor="animal">
+				<label htmlFor="breed">
 					Breed
-					<select id="breed" disabled={breeds.length === 0} name="breed">
+					<select
+						id="breed"
+						disabled={breeds.length === 0}
+						name="breed"
+						className="search-input  cursor-not-allowed disabled:opacity-50"
+					>
 						<option />
 						{breeds.map((breed) => (
 							<option key={breed}>{breed}</option>
 						))}
 					</select>
 				</label>
-				<button>Submit</button>
+				<button className="hover:opacity:50 back rounded border-none bg-orange-500 px-6 py-2 text-white">
+					Submit
+				</button>
 			</form>
-			<div className="search">
+			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 				{locationError ? (
 					<h2 className="error">
 						{locationError} Please check for typos in the location form, and be
