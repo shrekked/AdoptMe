@@ -33,14 +33,13 @@ const SearchParams = ({ token }) => {
 	const { data, isLoading } = useQuery({
 		queryKey: ["search", requestParams],
 		queryFn: fetchSearch,
-		// enabled: token.length > 0,
+		retry: 1,
 	});
 
 	// const results = useQuery(["search", requestParams], fetchSearch);
 	const animalTypeData = useQuery(
 		["searchAnimalTypes", requestParams.token],
 		fetchAnimalTypes
-		// token.length > 0
 	);
 
 	const types = animalTypeData?.data?.types ?? [];
@@ -49,6 +48,10 @@ const SearchParams = ({ token }) => {
 	});
 
 	const pets = data?.animals ?? [];
+	const locationError = data?.["invalid-params"]?.find(
+		(param) => param.path === "location"
+	)?.message;
+
 	const pagination = data?.pagination ?? {};
 
 	return (
@@ -60,7 +63,7 @@ const SearchParams = ({ token }) => {
 					const obj = {
 						animal: formData.get("animal") ?? "",
 						breed: formData.get("breed") ?? "",
-						location: formData.get("location") ?? "",
+						location: formData.get("location").trim().replace(/ +/g, " ") ?? "",
 					};
 					setRequestParams(obj);
 				}}
@@ -110,7 +113,22 @@ const SearchParams = ({ token }) => {
 				</label>
 				<button>Submit</button>
 			</form>
-			<Results pets={pets} isLoading={isLoading} />
+			<div className="search">
+				{locationError ? (
+					<h2 className="error">
+						{locationError} Please check for typos in the location form, and be
+						sure to enter you search in the following format: &quot;City,
+						State&quot; or &quot;Zip Code&quot;.
+						<br />
+						<br />
+						Also, please note that currently the Petfinder API only services the
+						United States and Canada.
+					</h2>
+				) : (
+					<Results pets={pets} isLoading={isLoading} />
+				)}
+			</div>
+
 			{pagination.total_pages > 1 && (
 				<Pagination
 					pagination={pagination}

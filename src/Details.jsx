@@ -109,28 +109,30 @@ const Details = () => {
 					<i className="ri-circle-fill"></i> {pet?.colors?.primary}
 				</div>
 				<hr></hr>
-				<h2 className="details-about"> About</h2>
 
-				{pet.coat && (
-					<div className="pet--about__info details--coatlength">
-						<h4>Coat Length: </h4>
-						{pet.coat}
-					</div>
-				)}
-
-				{(pet.environment.cats ||
-					pet.environment.dogs ||
-					pet.environment.children) && (
-					<div className="pet--about__info details--environment">
-						<h4>Good in a home with: </h4>
-						{Object.entries(pet.environment).map(([key, value], i) =>
-							value
-								? `${key[0].toUpperCase() + key.slice(1, key.length)}${
-										i < Object.entries(pet.environment).length - 1 ? "," : ""
-								  } `
-								: ""
+				{(pet?.environment?.cats ||
+					pet?.environment?.dogs ||
+					pet?.environment?.children ||
+					pet?.coat) && (
+					<>
+						<h2 className="details-about"> About</h2>
+						{pet.coat && (
+							<div className="pet--about__info details--coatlength">
+								<h4>Coat Length: </h4>
+								{pet.coat}
+							</div>
 						)}
-					</div>
+						<div className="pet--about__info details--environment">
+							<h4>Good in a home with: </h4>
+							{Object.entries(pet.environment).map(([key, value], i) =>
+								value
+									? `${key[0].toUpperCase() + key.slice(1, key.length)}${
+											i < Object.entries(pet.environment).length - 1 ? "," : ""
+									  } `
+									: ""
+							)}
+						</div>
+					</>
 				)}
 				<button onClick={(e) => handleModalOpen(e)}>Adopt {pet.name}</button>
 
