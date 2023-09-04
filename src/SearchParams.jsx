@@ -102,7 +102,7 @@ const SearchParams = ({ token }) => {
 						))}
 					</select>
 				</label>
-				<label htmlFor="animal">
+				<label htmlFor="breed">
 					Breed
 					<select id="breed" disabled={breeds.length === 0} name="breed">
 						<option />
