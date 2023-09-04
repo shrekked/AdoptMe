@@ -13,11 +13,11 @@ const Pet = (props) => {
 	}
 
 	return (
-		<Link to={`/details/${id}`} className="pet">
-			<div className="image-container">
-				<img src={hero} alt={name} width="250" height="250" />
+		<Link to={`/details/${id}`} className="relative block bg-slate-100 py-4 px-8 shadow-md">
+			<div className="max-w-full w-auto h-auto">
+				<img src={hero} alt={name} className="w-auto h-full mb-4 mx-auto"  />
 			</div>
-			<div className="info">
+			<div className="block text-center">
 				<h1>{name}</h1>
 				<h2>
 					{type} - {breeds?.primary} - {status}

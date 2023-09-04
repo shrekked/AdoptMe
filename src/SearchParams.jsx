@@ -112,7 +112,7 @@ const SearchParams = ({ token }) => {
 						id="breed"
 						disabled={breeds.length === 0}
 						name="breed"
-						className="search-input grayed-out-disabled"
+						className="search-input  cursor-not-allowed disabled:opacity-50"
 					>
 						<option />
 						{breeds.map((breed) => (
@@ -124,7 +124,7 @@ const SearchParams = ({ token }) => {
 					Submit
 				</button>
 			</form>
-			<div className="search">
+			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 				{locationError ? (
 					<h2 className="error">
 						{locationError} Please check for typos in the location form, and be
