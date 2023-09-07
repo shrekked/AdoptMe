@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, KeyboardEvent } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import AdoptedPetContext from "./AdoptedPetContext";
@@ -10,24 +10,58 @@ import Modal from "./Modal";
 
 const Details = () => {
 	const { id } = useParams();
-	// const navigate = useNavigate();
 
-	// eslint-disable-next-line no-unused-vars
-	const [_, setAdoptedPet] = useContext(AdoptedPetContext);
-	const [showModal, setShowModal] = useState(false);
+	if (!id) {
+		throw new Error("ID not found");
+	}
+
+	// const navigate = useNavigate();
 	const results = useQuery(["details", id], fetchPet);
 
 	const pet = results?.data?.animal || {};
 
-	useEffect(() => {
-		function keyListener(e) {
-			const listener = keyListenersMap.get(e.keyCode);
-			return listener && listener(e);
-		}
-		document.addEventListener("keydown", keyListener);
+	// eslint-disable-next-line @ypescript-eslint/no-unused-vars
+	const [_, setAdoptedPet] = useContext(AdoptedPetContext);
+	const [showModal, setShowModal] = useState(false);
 
-		return () => document.removeEventListener("keydown", keyListener);
-	});
+	const useKeyDown = (callback: any, keys: any) => {
+		const onKeyDown = (event: any) => {
+			const wasAnyKeyPressed = keys.some((key: any) => event.key === key);
+			if (wasAnyKeyPressed) {
+				event.preventDefault();
+				callback(event);
+			}
+		};
+		useEffect(() => {
+			document.addEventListener("keydown", onKeyDown);
+			return () => {
+				document.removeEventListener("keydown", onKeyDown);
+			};
+		}, [onKeyDown]);
+	};
+
+	useKeyDown(() => {
+		closeModal();
+	}, ["Escape"]);
+	useKeyDown(
+		(e: any) => {
+			handleTabKey(e);
+		},
+		["Tab"]
+	);
+
+	// useEffect(() => {
+	// 	function keyListener(e: KeyboardEvent) {
+	// 		console.log({ e });
+	// 		const listener = keyListenersMap.get(e.keyCode);
+	// 		return listener && listener(e);
+	// 	}
+
+	// 	document.addEventListener("keydown", keyListener);
+	// 	document.removeEventListener("keydown", keyListener)
+
+	// 	// return () => document.removeEventListener("keydown", keyListener);
+	// }, []);
 
 	const defaultImages = [
 		{
@@ -51,13 +85,16 @@ const Details = () => {
 			const yesButton = document.querySelector(
 				"#modal .buttons .modal_button_yes"
 			);
-			yesButton.focus();
+			if (yesButton) (yesButton as HTMLElement).focus();
 		});
 	};
 
-	const handleTabKey = (e) => {
+	//TODO -- THIS IS BROKEN
+	const handleTabKey = (e: KeyboardEvent) => {
+		console.log(e);
 		if (!showModal) return;
 		const modal = document.querySelector("#modal");
+		if (!modal) return;
 		const focusableModalElements = modal.querySelectorAll(
 			'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
 		);
@@ -66,19 +103,15 @@ const Details = () => {
 			focusableModalElements[focusableModalElements.length - 1];
 
 		if (!e.shiftKey && document.activeElement !== firstElement) {
-			firstElement.focus();
+			(firstElement as HTMLElement).focus();
 			return e.preventDefault();
 		}
 
 		if (e.shiftKey && document.activeElement !== lastElement) {
-			lastElement.focus();
+			(lastElement as HTMLElement).focus();
 			e.preventDefault();
 		}
 	};
-	const keyListenersMap = new Map([
-		[27, closeModal],
-		[9, handleTabKey],
-	]);
 
 	if (results.isLoading) {
 		return (
@@ -165,7 +198,7 @@ const Details = () => {
 	);
 };
 
-function DetailsErrorBoundary(props) {
+function DetailsErrorBoundary(props: any) {
 	return (
 		<ErrorBoundary>
 			<Details {...props} />
