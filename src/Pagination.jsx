@@ -33,22 +33,22 @@ const Pagination = ({ pagination, requestParams, setRequestParams }) => {
 	};
 	return (
 		<>
-			<div className="pagination_container">
+			<div className="flex justify-center gap-8 p-12 ">
 				{pagination.current_page > 1 && (
 					<button
 						onClick={(e) => handlePagination(e, pagination.current_page - 1)}
 						onKeyDown={(e) => handlePagination(e, pagination.current_page - 1)}
-						className="pagination_number arrow"
+						className="radius basis-3 rounded border border-solid border-black bg-red-400 p-2 font-bold transition hover:bg-red-500"
 					>
 						<i className="ri-arrow-left-line">
-							<span className="arrow_text">Previous</span>
+							<span className="sr-only">Previous</span>
 						</i>
 					</button>
 				)}
 
 				{pagination.current_page > pagesConfig && !isMobile && (
 					<button
-						className="pagination_number"
+						className="radius basis-3 rounded border border-solid border-black bg-red-400 p-2 font-bold transition hover:bg-red-500"
 						onClick={(e) => handlePagination(e, 1)}
 						onKeyDown={(e) => handlePagination(e, 1)}
 					>
@@ -60,8 +60,8 @@ const Pagination = ({ pagination, requestParams, setRequestParams }) => {
 					return (
 						<button
 							key={page}
-							className={`pagination_number ${
-								pagination.current_page === page ? "pagination_active" : ""
+							className={`radius basis-3 rounded border border-solid border-black bg-red-400 p-2 font-bold transition hover:bg-red-500 ${
+								pagination.current_page === page ? " bg-red-500" : ""
 							}`}
 							onClick={(e) => handlePagination(e, page)}
 							onKeyDown={(e) => handlePagination(e, page)}
@@ -75,7 +75,7 @@ const Pagination = ({ pagination, requestParams, setRequestParams }) => {
 					pagination.total_pages > pagesConfig &&
 					!isMobile && (
 						<button
-							className="pagination_number"
+							className="radius basis-3 rounded border border-solid border-black bg-red-400 p-2 font-bold transition hover:bg-red-500"
 							onClick={(e) => handlePagination(e, pagination.total_pages)}
 							onKeyDown={(e) => handlePagination(e, pagination.total_pages)}
 						>
@@ -87,10 +87,10 @@ const Pagination = ({ pagination, requestParams, setRequestParams }) => {
 					<button
 						onClick={(e) => handlePagination(e, pagination.current_page + 1)}
 						onKeyDown={(e) => handlePagination(e, pagination.current_page + 1)}
-						className="pagination_number arrow"
+						className="radius basis-3 rounded border border-solid border-black bg-red-400 p-2 font-bold transition hover:bg-red-500"
 					>
 						<i className="ri-arrow-right-line">
-							<span className="arrow_text">Next</span>
+							<span className="sr-only">Next</span>
 						</i>
 					</button>
 				)}
