@@ -75,7 +75,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://github.com/shrekked/AdoptMe/preview.png)
+[![Product Screen Shot][product-screenshot]](https://raw.githubusercontent.com/shrekked/AdoptMe/main/preview.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
