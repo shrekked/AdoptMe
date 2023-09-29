@@ -22,7 +22,8 @@
 <br />
 <div align="center">
   <a href="https://github.com/shrekked/AdoptMe">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://github.com/shrekked/AdoptMe/assets/7683981/c397360c-0093-4cca-b499-4d5901ee41b0" alt="Logo" width="80" height="80">
+
   </a>
 
 <h3 align="center">Adopt-Me</h3>
@@ -75,7 +76,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Screen Shot][product-screenshot]](https://raw.githubusercontent.com/shrekked/AdoptMe/main/preview.png)
+![preview](https://github.com/shrekked/AdoptMe/assets/7683981/d919f0c3-d24e-406e-8ed2-818eb1afcdf9)
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
