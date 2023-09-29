@@ -9,7 +9,7 @@ const Results = ({ pets, isLoading }) => {
 		</div>;
 	}
 	return (
-		<div className="search">
+		<>
 			{!pets.length ? (
 				<>
 					<h1>No Pets Found</h1>
@@ -18,7 +18,6 @@ const Results = ({ pets, isLoading }) => {
 							<i className="ri-loop-right-line"></i>
 						</h2>
 					</div>
-					;
 				</>
 			) : (
 				pets.map((pet) => (
@@ -29,12 +28,13 @@ const Results = ({ pets, isLoading }) => {
 						id={pet.id}
 						name={pet.name}
 						images={pet.photos}
-						location={`${pet.city}, ${pet.state}`}
+						location={`${pet.contact?.address?.city}, ${pet.contact?.address?.state}`}
 						key={pet.id}
+						distance={pet.distance}
 					/>
 				))
 			)}
-		</div>
+		</>
 	);
 };
 

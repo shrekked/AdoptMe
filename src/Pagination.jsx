@@ -1,8 +1,15 @@
+import { useState } from "react";
 const Pagination = ({ pagination, requestParams, setRequestParams }) => {
 	// fontawesome icons
+	const mobileQuery = window.matchMedia("(max-width: 600px)");
+	const [isMobile, setIsMobile] = useState(mobileQuery.matches);
+
+	mobileQuery.onchange = (e) => {
+		setIsMobile(e.matches);
+	};
 
 	// pagination config
-	const pagesConfig = 4;
+	const pagesConfig = isMobile ? 1 : 4;
 	const pages = [];
 	const start = 1;
 	const end = pagination.total_pages;
@@ -13,14 +20,16 @@ const Pagination = ({ pagination, requestParams, setRequestParams }) => {
 	if (pagination.current_page >= pagesConfig) {
 		pages.push(
 			...allPages.slice(
-				pagination.current_page - 2,
-				pagination.current_page + 2
+				pagination.current_page - Math.ceil(pagesConfig / 2),
+				pagination.current_page + Math.ceil(pagesConfig / 2)
 			)
 		);
 	}
 
 	const handlePagination = (e, page) => {
-		setRequestParams({ ...requestParams, page: page });
+		if (e?.code === "Enter" || e.type === "click") {
+			setRequestParams({ ...requestParams, page: page });
+		}
 	};
 	return (
 		<>
@@ -37,7 +46,7 @@ const Pagination = ({ pagination, requestParams, setRequestParams }) => {
 					</button>
 				)}
 
-				{pagination.current_page > pagesConfig && (
+				{pagination.current_page > pagesConfig && !isMobile && (
 					<button
 						className="pagination_number"
 						onClick={(e) => handlePagination(e, 1)}
@@ -63,7 +72,8 @@ const Pagination = ({ pagination, requestParams, setRequestParams }) => {
 				})}
 
 				{pagination.current_page < pagination.total_pages &&
-					pagination.total_pages > pagesConfig && (
+					pagination.total_pages > pagesConfig &&
+					!isMobile && (
 						<button
 							className="pagination_number"
 							onClick={(e) => handlePagination(e, pagination.total_pages)}

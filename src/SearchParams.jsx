@@ -33,6 +33,7 @@ const SearchParams = ({ token }) => {
 	const { data, isLoading } = useQuery({
 		queryKey: ["search", requestParams],
 		queryFn: fetchSearch,
+		retry: 1,
 	});
 
 	// const results = useQuery(["search", requestParams], fetchSearch);
@@ -47,6 +48,10 @@ const SearchParams = ({ token }) => {
 	});
 
 	const pets = data?.animals ?? [];
+	const locationError = data?.["invalid-params"]?.find(
+		(param) => param.path === "location"
+	)?.message;
+
 	const pagination = data?.pagination ?? {};
 
 	return (
@@ -97,7 +102,7 @@ const SearchParams = ({ token }) => {
 						))}
 					</select>
 				</label>
-				<label htmlFor="animal">
+				<label htmlFor="breed">
 					Breed
 					<select id="breed" disabled={breeds.length === 0} name="breed">
 						<option />
@@ -108,7 +113,22 @@ const SearchParams = ({ token }) => {
 				</label>
 				<button>Submit</button>
 			</form>
-			<Results pets={pets} isLoading={isLoading} />
+			<div className="search">
+				{locationError ? (
+					<h2 className="error">
+						{locationError} Please check for typos in the location form, and be
+						sure to enter you search in the following format: &quot;City,
+						State&quot; or &quot;Zip Code&quot;.
+						<br />
+						<br />
+						Also, please note that currently the Petfinder API only services the
+						United States and Canada.
+					</h2>
+				) : (
+					<Results pets={pets} isLoading={isLoading} />
+				)}
+			</div>
+
 			{pagination.total_pages > 1 && (
 				<Pagination
 					pagination={pagination}

@@ -39,6 +39,8 @@ body {
     padding: 15px;
     margin-bottom: 25px;
     flex: 0 0 715px;
+    display: flex;
+    flex-wrap: wrap
 }
 
 .details {
@@ -53,16 +55,29 @@ body {
 
 .pet {
     width: 100%;
-    height: 130px;
-    display: block;
+    height: auto;
     overflow: hidden;
-    margin: 25px 0;
+    margin: 1rem 0;
+    padding: 1rem 0;
     border-bottom: #333 2px solid;
+    flex: 0 1 100%;
+    display: flex;
+    flex: 0 1 100%;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+
+.image-container {
+    clip-path: circle(49% at 50% 50%);
+    margin: 2rem 0;
+    flex: 0 1 250px;
 }
 
 .pet img {
-    width: 100px;
-    min-height: 100px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
 }
 
 .pet-name {
@@ -70,20 +85,12 @@ body {
 }
 
 .info {
-    float: left;
-    width: 80%;
-    height: 100px;
+    flex: 0 1 calc(100% - 300px);
+    height: auto;
     padding-top: 10px;
+    display: flex;
     flex-direction: column;
-    justify-content: space-around;
-}
-
-.image-container {
-    clip-path: circle(50% at 50% 50%);
-    width: 100px;
-    height: 100px;
-    float: left;
-    margin: 0px 20px 0px 10px;
+    justify-content: center;
 }
 
 .pet h1 {
@@ -279,104 +286,6 @@ header {
     margin-right: 15px;
 }
 
-@media only screen and (max-width: 1129px) {
-    header {
-        display: flex;
-        align-content: center;
-        justify-content: center;
-        width: 95%;
-        margin: 0 auto;
-        padding: 20px 0px 0px 0px;
-    }
-
-    .search-params {
-        width: 95%;
-    }
-
-    .search-params form {
-        margin-bottom: 20px;
-    }
-
-    .search {
-        width: 55%;
-        padding: 15px;
-        border-radius: 9px;
-        float: left;
-        margin-bottom: 25px;
-    }
-
-    .details {
-        width: 95%;
-        margin: 0 auto;
-        padding: 15px;
-        border-radius: 9px;
-        margin-bottom: 25px;
-    }
-
-    .info {
-        width: 65%;
-    }
-
-    .info h1 {
-        width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .info h2 {
-        width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-}
-
-@media only screen and (max-width: 945px) {
-    .search-params {
-        width: 95%;
-    }
-
-    .search {
-        width: 100%;
-        flex: 0 1 100%;
-    }
-
-    .search-params form {
-        margin: 0 0 2rem 0;
-    }
-
-    .search-params form,
-    .search-params form * {
-        width: 100%;
-        flex: 0 1 100%;
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    .pet {
-        height: 200px;
-    }
-
-    .info {
-        width: 100%;
-        text-align: center;
-    }
-
-    .image-container {
-        margin: 0 auto;
-        float: none;
-    }
-
-    .carousel-smaller button>img {
-        width: 60px;
-        height: 60px;
-        /* border: 0; */
-        background-color: none;
-        color: transparent;
-        display: inline;
-    }
-}
 
 .loading-pane {
     align-items: center;
@@ -473,4 +382,116 @@ form .pet {
     background: #f8142bef;
     position: relative;
     border: 1px solid #000;
+}
+
+@media only screen and (max-width: 1129px) {
+    header {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        width: 95%;
+        margin: 0 auto;
+        padding: 20px 0px 0px 0px;
+    }
+
+    .search-params {
+        width: 95%;
+    }
+
+    .search-params label {
+        width: auto;
+    }
+
+    .search-params input,
+    .search-params select {
+        width: 100%;
+    }
+
+    .search-params form {
+        margin-bottom: 20px;
+        width: 100%;
+        flex: 0 0 100%;
+    }
+
+    .search {
+        width: 100%;
+        flex: 0 1 100%;
+        padding: 15px;
+        border-radius: 9px;
+        float: left;
+        margin-bottom: 25px;
+    }
+
+    .details {
+        width: 95%;
+        margin: 0 auto;
+        padding: 15px;
+        border-radius: 9px;
+        margin-bottom: 25px;
+    }
+
+    .info {
+        width: 65%;
+    }
+
+    .info h1 {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .info h2 {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media only screen and (max-width: 945px) {
+    .search-params {
+        width: 95%;
+    }
+
+    .search {
+        width: 100%;
+        flex: 0 1 100%;
+    }
+
+    .search-params form {
+        margin: 0 0 2rem 0;
+    }
+
+    .search-params form,
+    .search-params form * {
+        width: 100%;
+        flex: 0 1 100%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    .info {
+        text-align: center;
+        flex: 0 1 100%;
+    }
+
+    .image-container {
+        margin: 0 auto;
+        flex: 0 1 100%;
+    }
+
+    .carousel-smaller button>img {
+        width: 60px;
+        height: 60px;
+        background-color: none;
+        color: transparent;
+        display: inline;
+    }
+
+    .pagination_container {
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
 }

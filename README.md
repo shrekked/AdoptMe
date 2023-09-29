@@ -22,7 +22,8 @@
 <br />
 <div align="center">
   <a href="https://github.com/shrekked/AdoptMe">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://github.com/shrekked/AdoptMe/assets/7683981/c397360c-0093-4cca-b499-4d5901ee41b0" alt="Logo" width="80" height="80">
+
   </a>
 
 <h3 align="center">Adopt-Me</h3>
@@ -61,7 +62,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <!--<li><a href="#usage">Usage</a></li>-->
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -75,7 +76,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](./preview.png)
+![preview](https://github.com/shrekked/AdoptMe/assets/7683981/d919f0c3-d24e-406e-8ed2-818eb1afcdf9)
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -128,6 +131,7 @@ This is an example of how to list things you need to use the software and how to
 
 
 <!-- USAGE EXAMPLES -->
+<!--
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
@@ -135,7 +139,7 @@ Use this space to show useful examples of how a project can be used. Additional 
 _For more examples, please refer to the [Documentation](https://www.petfinder.com/developers/v2/docs/)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+-->
 
 
 <!-- ROADMAP -->
@@ -216,7 +220,7 @@ Project Link: [https://adoptme-6d7f8.web.app/](https://adoptme-6d7f8.web.app/)
 [issues-shield]: https://img.shields.io/github/issues/shrekked/AdoptMe.svg?style=for-the-badge
 [issues-url]: https://github.com/shrekked/AdoptMe/issues
 [license-shield]: https://img.shields.io/github/license/shrekked/AdoptMe.svg?style=for-the-badge
-[license-url]: https://github.com/shrekked/AdoptMe/blob/master/LICENSE.txt
+[license-url]: https://github.com/shrekked/AdoptMe/blob/master/LICENSE.md
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/evan-crumpecker
 [product-screenshot]: images/screenshot.png
